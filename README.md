@@ -1,69 +1,47 @@
-# typescript-hardhat-boilerplate
+<p align="center">
+    <h1 align="center">
+        Uniswap V2
+    </h1>
+    <p align="center">Core Contracts</p>
+</p>
 
-# 목차
 
-[1.reference](#1.-reference)
+---
+# Deployed contracts
+|          | Mumbai                                                                                             |
+|----------|----------------------------------------------------------------------------------------------------|
+| Factory  | [0x226C...4915](https://mumbai.polygonscan.com/address/0x226C272649300b5225ebE86C3198c70449f64915) |
+| Pair     | [0xC2Ef...03ac](https://mumbai.polygonscan.com/address/0xC2EfFFdF95F955D25B28eF276080e06e23f003ac) |
+| UniToken | [0x86d3...E563](https://mumbai.polygonscan.com/address/0x86d383FB269eB31b82da97b02e15bc549356E563) |
+---
 
-[2.installation](#2.-installation)
-
-[3.file directory](#3.-file-directory)
-
-[4.testing contract](#4.-testing-contract)
-
-[5.environment variables](#5.-environment-variables)
-
-[6.deploying contract](#6.-deploying-contract)
-
-## 1. reference
-
-## [Hardhat docs](https://hardhat.org/hardhat-runner/docs/getting-started#overview)
-## [Alchemy Ethereum](https://www.alchemy.com/ethereum)
-## [Alchemy Polygon](https://www.alchemy.com/polygon)
-
-## 2. installation
+## 1. installation
 - node v16.17.1
 - npm 8.15.0
 ```shell
 npm install
 ```
 
-### 2.1 initial setting
-```bash
-npx hardhat init
-npm install --save @openzeppelin/contracts
-npm install dovenv
-```
-
-## 3. file directory
-### 3.1 contracts/
-- 스마트 컨트랙트 소스코드 파일 보관
-### 3.2 scripts/
-- 스마트 컨트랙트를 배포할 때 실행하는 스크립트코드 파일 보관
-### 3.3 test/
-- 스마트 컨트랙트를 테스트하는 소스코드 파일 보관
-### 3.4 hardhat.config.ts
-- 이더리움 테스트넷 또는 메인넷 등 스마트 컨트랙트를 배포할 네트워크를 설정할 수 있는 config 파일
-## 4. testing contract
-- `test/` 폴더에 있는 파일 실행
-```shell
-npx hardhat test test/Lock.ts
-```
-
-## 5. environment variables
+## 2. environment variables
 - `$ touch .env`
-- 또는 rename `.env.example` to `.env`
+- or rename `.env.example` to `.env`
 ```bash
 ALCHEMY_MUMBAI_API_KEY=
 ALCHEMY_SEPOLIA_API_KEY=
 PRIVATE_KEY=
 ```
 
-## 6. deploying contract
-- `scripts/` 폴더에 있는 파일 실행
-- 로컬에 배포 후 테스트 하는 방법
-  - `$ npx hardhat node` 
-  - `$ npx hardhat run scripts/deploy.ts`
+## 3. deploying contract
 ```shell
-# sepolia bscMainnet bscTestnet
+# deploy Factory contract 
 npx hardhat run scripts/deploy.ts --network mumbai
+
+# deploy Pair contract
+npx hardhat run scripts/deployPair.ts --network mumbai
+```
+
+## 3.1 deploying contract in local node
+```shell
+npx hardhat node
+npx hardhat run scripts/deploy.ts
 ```
