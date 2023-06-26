@@ -3,22 +3,20 @@ import { getDatetimeString } from '../utils/timeUtils';
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now());
   const contractCreatedTime = getDatetimeString(currentTimestampInSeconds)
-  const unlockTime = currentTimestampInSeconds + 60;
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime);
-
-  await lock.deployed();
+  const UniswapV2Factory = await ethers.getContractFactory("UniswapV2Factory");
+  const uniswapV2Factory = await UniswapV2Factory.deploy('0x4d0C2bE9448Dc7528F097FC58Be37c188E91EB5C');
+  await uniswapV2Factory.deployed();
 
   console.log(
-    `${lock.address} contract is deployed at ${contractCreatedTime}`
+    `${uniswapV2Factory.address} contract is deployed at ${contractCreatedTime}`
   );
   console.log(`
  click this link if you deploy contract on Ethereum Sepolia Testnet
- https://sepolia.etherscan.io/address/${lock.address} \n
+ https://sepolia.etherscan.io/address/${uniswapV2Factory.address} \n
  click this link if you deploy contract on Bianace Smart Chain Testnet
- https://testnet.bscscan.com/address/${lock.address} \n
+ https://testnet.bscscan.com/address/${uniswapV2Factory.address} \n
  click this link if you deploy contract on Polygon Mumbai Testnet
- https://mumbai.polygonscan.com/address/${lock.address} \n
+ https://mumbai.polygonscan.com/address/${uniswapV2Factory.address} \n
   `)
 }
 
